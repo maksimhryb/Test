@@ -1,0 +1,12 @@
+switch (operator) {
+//            case "*":
+//                return new Multiply();
+//            case "+":
+//                return new Sum();
+//            case "-":
+//                return new Subtraction();
+//            case "/":
+//                return new Division();
+//            default:
+//                throw new Exception("Result exception: Invalid operator");
+//        }
