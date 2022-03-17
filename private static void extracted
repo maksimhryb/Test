@@ -1,0 +1,133 @@
+private static void extracted() {
+        Logger log = Logger.getLogger("MainLogger");
+//        log.info(log.getName() + ": Test message");
+
+        File file = new File("files/formula.txt");
+        Reader reader = new FormulaReader();
+        List<Formula> formula;
+        try {
+            formula = reader.getFormula(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Operators collection is empty
+        tryCalcWithEmptyOperators();
+
+        try {
+            calc.addOperator(new Division());
+            calc.addOperator(new Multiply());
+            calc.addOperator(new Subtraction());
+            calc.addOperator(new Sum());
+            calc.addOperator(null);
+        } catch (ParameterIsNullException e) {
+//            System.out.println(e.getLocalizedMessage());
+//            log.warning(e.getLocalizedMessage());
+            log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+        }
+
+        firstTest();
+        firstTest();
+        secondTest();
+        thirdTest();
+        fourthTest();
+        fifthTest();
+        sixthTest();
+        eighthTest();
+        ninthTest();
+        tenthTest();
+        seventhTest();
+        eleventhTest();
+
+        try {
+            System.out.println(calc.getLast(2));
+            System.out.println(calc.getLast(100));
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Index out of bound exception: " + e.getLocalizedMessage());
+        }
+    }
+
+    private static void tryCalcWithEmptyOperators() {
+        ProxyCalculator calcWithEmptyOperators = new ProxyCalculator(new LocalCalculator());
+        try {
+            calcWithEmptyOperators.calculate(new Formula(45, 32, "-"));
+        } catch (OperatorNotFoundException e) {
+            System.out.println(e.getLocalizedMessage());
+        } catch (Exception ex) {
+            System.out.println(ex.getLocalizedMessage());
+        }
+    }
+
+    private static void baseTest(Number x, Number y, String operator) {
+        try {
+            Number calculate = calc.calculate(new Formula(x, y, operator));
+            System.out.println(calculate);
+        } catch (ParameterIsNullException e) {
+            System.out.println("ParameterIsNullException: " + e.getLocalizedMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException: " + e.getLocalizedMessage());
+        } catch (Exception e) {
+            System.out.println("Exception: " + e.getLocalizedMessage());
+        }
+    }
+
+    private static void firstTest() {
+        baseTest(1, 2, "+");
+    }
+
+    private static void secondTest() {
+        baseTest(10, 2, "-");
+    }
+
+    private static void thirdTest() {
+        baseTest(9, .78652, "*");
+    }
+
+    private static void fourthTest() {
+        baseTest(10, 2.8, "/");
+    }
+
+    private static void fifthTest() {
+        baseTest(7, 2, "%");
+    }
+
+    private static void sixthTest() {
+        baseTest(10, 0, "/");
+    }
+
+    private static void seventhTest() {
+        baseTest(null, 0, "+");
+    }
+
+    private static void eighthTest() {
+        baseTest(-1, 0, "+");
+    }
+
+    private static void ninthTest() {
+        baseTest(-1, -5, "*");
+    }
+
+    private static void tenthTest() {
+        baseTest(-15, -5, "-");
+    }
+
+    private static void eleventhTest() {
+        baseTest(655, -5, null);
+    }
+
+return String.format("%s%s%s=%s", x, operator, y, result);
+
+
+1+2
+10-2
+9*0.78652
+10/2.8
+7%2
+10/0
+null+0
+-1+0
+-1*(-5)
+-15-(-5)
+655null-5
+null*3
+**2
