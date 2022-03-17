@@ -1,0 +1,35 @@
+Create branch 'Module6' in your repository and commit all changes there;
+	
+Update your project from Module 5 with following requirements:
+	
+
+		
+Add methods to register new operator for the Calculator interface:
+		void addOperator(Operator operator)
+		
+Discuss with the mentor how to implement the new method and store the operators within LocalCalculator class
+		
+Implement new ProxyCalculator class that also implements Calculator interface, but can also store the already calculated result for the given Formula, and calls some other Calculator instance (for example, LocalCalculator) only when there is no cached result for the Formula available
+		
+Create another interface History that has getLast(int number) method that shows the last given inputs for the calculate(Formula formula) method, and make ProxyCalculator implement it
+	
+	
+	
+Push your changes, create pull request and add your mentor as a reviewer.
+
+private Operator chooseOperator(String operator) throws InvalidOperatorException {
+
+        if ("*".equals(operator)) {
+            return new Multiply();
+        }
+        if ("/".equals(operator)) {
+            return new Division();
+        }
+        if ("+".equals(operator)) {
+            return new Sum();
+        }
+        if ("-".equals(operator)) {
+            return new Subtraction();
+        }
+        throw new InvalidOperatorException("Result exception: Invalid operator");
+    }

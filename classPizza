@@ -11,8 +11,7 @@
 
 Добавить геттеры, сеттеры. 
 
-Сделать конструктор для всех параметров. 
-(* Сделать дополнительно два конструктора, для пиццы с только одним или только двумя ингридиентами)
+// Deleted two lines
 
 Сделать Класс, со статическим методом. 
 Он готовит пиццу. 
@@ -25,3 +24,47 @@
  ... И так далее. 
   Использовать заранее заданные ингридиенты при приготовлении пиццы. 
 )
+
+// Added new
+
+package com.epam.goman;
+
+public class Formula {
+
+    private Number x;
+    private Number y;
+    private String operator;
+
+    public Formula() {
+    }
+
+    public Formula(Number x, Number y, String operator) {
+        this.x = x;
+        this.y = y;
+        this.operator = operator;
+    }
+
+    public Number getX() {
+        return x;
+    }
+
+    public void setX(Number x) {
+        this.x = x;
+    }
+
+    public Number getY() {
+        return y;
+    }
+
+    public void setY(Number y) {
+        this.y = y;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+}
